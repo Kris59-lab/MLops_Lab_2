@@ -14,6 +14,7 @@ def test_addition_and_subtraction(monkeypatch, capsys):
     assert "The result of subtraction is: 12.0" in captured.out
     assert "Thank you for using the calculator. Goodbye!" in captured.out
 
+
 def test_division_by_zero(monkeypatch, capsys):
     inputs = iter(['4', '10', '0', 'no'])
     monkeypatch.setattr('builtins.input', lambda _: next(inputs))
@@ -24,6 +25,7 @@ def test_division_by_zero(monkeypatch, capsys):
     assert "Cannot divide by zero." in captured.out
     assert "Thank you for using the calculator. Goodbye!" in captured.out
 
+
 def test_division(monkeypatch, capsys):
     inputs = iter(['4', '20', '4', 'no'])
     monkeypatch.setattr('builtins.input', lambda _: next(inputs))
@@ -33,6 +35,7 @@ def test_division(monkeypatch, capsys):
     captured = capsys.readouterr()
     assert "The result of division is: 5.0" in captured.out
     assert "Thank you for using the calculator. Goodbye!" in captured.out
+
 
 def test_multiplication(monkeypatch, capsys):
     inputs = iter(['3', '3', '7', 'no'])
@@ -46,15 +49,16 @@ def test_multiplication(monkeypatch, capsys):
 
 
 def test_invalid_operation(monkeypatch, capsys):
-    """Test invalid operation input (not 1-4)."""
-    # Inputs: invalid operation '5', then valid operation '1', numbers, and exit
     inputs = iter(['5', '1', '10', '5', 'no'])
     monkeypatch.setattr('builtins.input', lambda _: next(inputs))
 
     calculator()
 
     captured = capsys.readouterr()
-    assert "Invalid input. Please enter a number between 1 and 4." in captured.out
+    assert (
+        "Invalid input. Please enter a number between 1 and 4."
+        in captured.out
+    )
     assert "The result of addition is: 15.0" in captured.out
 
 
