@@ -5,7 +5,7 @@ def multiply(a : float, b : float) -> float:
 def divide(a : float, b : float) -> float:
     if b == 0:
         raise ValueError("Cannot divide by zero.")
-    print(f"Dividing {b} into {a}")
+    print(f"Dividing {a} by the number {b}")
     return a / b
 
 def add(*args):
